@@ -6,6 +6,14 @@ const app = express();
 
 app.use(express.json())
 
+app.use((err, req, res, next) => {
+
+  if(err.status === 400)
+    return res.status(err.status).send('JSON formatado de forma incorreta!');
+
+  return next(err); 
+});
+
 app.use(routes)
 
 app.listen(3333, () => {

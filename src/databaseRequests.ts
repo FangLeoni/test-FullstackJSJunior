@@ -30,7 +30,7 @@ async function getAllUsers(req: Request,res: Response){
 			res.status(404).send("Não temos mais usuários");
 		}
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao ler arquivo durante seleção de todos os usuários")
 	}
     
@@ -57,7 +57,7 @@ async function getUser(req: Request,res: Response){
 		}
 
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao ler arquivo durante seleção de usuário")
 	}
     
@@ -77,7 +77,7 @@ async function createUser (req: Request,res: Response){
 	try {
 		hashPassword = await argon2.hash(newPassword);
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao criptografar a senha do usuário")
 	}
 
@@ -94,7 +94,7 @@ async function createUser (req: Request,res: Response){
 		usersStringified = JSON.stringify(usersJSON,null, 2);
 
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao ler arquivo durante criação de usuário")
 	}
 
@@ -104,7 +104,7 @@ async function createUser (req: Request,res: Response){
 		res.send("Usuário criado com sucesso!")
 		
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao criar usuário!")
 	}
 };
@@ -125,7 +125,7 @@ async function updateUser(req: Request,res: Response){
 	try {
 		hashNewPassword = await argon2.hash(reqNewPassword);
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao criptografar a senha do usuário")
 	}
 
@@ -135,7 +135,7 @@ async function updateUser(req: Request,res: Response){
 		usersJSON = JSON.parse(readReturn);
 
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao ler arquivo durante atualização de usuário!")
 	}
 
@@ -159,7 +159,7 @@ async function updateUser(req: Request,res: Response){
 						res.send("Usuário atualizado com sucesso!")
 						
 					} catch(err) {
-						console.log(err);
+						console.error(err);
 						res.status(404).send("Erro ao atualizar usuário!")
 					}
 				} else {
@@ -192,7 +192,7 @@ async function deleteAllUsers(req: Request,res: Response){
 		res.send("Todos os usuários foram deletados com sucesso!")
 		
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao deletar todos os usuários!")
 	}
     
@@ -211,7 +211,7 @@ async function deleteUser (req: Request,res: Response){
 		usersJSON = JSON.parse(readReturn);
 
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 		res.status(404).send("Erro ao ler base de dados para deletar usuário!")
 	}
 
@@ -230,7 +230,7 @@ async function deleteUser (req: Request,res: Response){
 					res.send("Usuário Deletado com sucesso!")
 					
 				} catch(err) {
-					console.log(err);
+					console.error(err);
 					res.status(404).send("Erro ao deletar usuário!")
 				}
 
