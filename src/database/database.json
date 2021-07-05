@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": "3efbc0d8-69fd-4aaf-bdae-16fcfc6d416a",
+      "email": "password.hash@gmail.com",
+      "password": "$argon2i$v=19$m=4096,t=3,p=1$3Ge9kqQ0NRWqPnT04H+Cow$2YDJ9yLiPTsRrQ6+biljao/FnA/O7nQ0lZ8yKJLNKDY"
+    },
+    {
+      "id": "71951d61-9bc3-4e78-a304-e4573f6b4b8c",
+      "email": "password.hash@gmail.com",
+      "password": "$argon2i$v=19$m=4096,t=3,p=1$pyUZVxdedysPWNRrhACBhQ$ABQT85x1suX+O+tkfMLPB/QeVFVJQFuQmdaR9xtRCY8"
+    },
+    {
+      "id": "617cf145-4273-4172-88fa-2b9a620470fd",
+      "email": "password.hash@gmail.com",
+      "password": "$argon2i$v=19$m=4096,t=3,p=1$1eds0VbLZ29eKjJtJ+OTDA$f3ODXEHFfHBM0u2Z8R5oHrzoaApuv1kyawrCKQxQdyM"
+    }
+  ]
+}
