@@ -110,7 +110,7 @@ async function createUser (req: Request,res: Response){
 };
 
 
-// Alterar único usuário // Body: JSON (email,senha) // Params: ID
+// Alterar único usuário // Body: JSON (email, newPassword, oldPassword) // Params: ID
 async function updateUser(req: Request,res: Response){
 
 	const reqId:string = req.params.user_id;
