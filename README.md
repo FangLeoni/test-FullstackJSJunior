@@ -10,25 +10,25 @@ Várias ferramentas podem ser utilizadas para fazer as requisições como Postma
 
 Após baixar o projeto como zip ou via git clone:
 ```sh
-	git clone https://github.com/Fizer65/test-FullstackJSJunior.git
+git clone https://github.com/Fizer65/test-FullstackJSJunior.git
 ```
 ### NodeJS
 Para baixar as dependências do projeto:
 ```sh
-	npm install
+npm install
 ```
 Iniciar a API:
 ```sh
-	node run start
+node run start
 ```
 ### Yarn
 Para baixar as dependências do projeto:
 ```sh
-	yarn install
+yarn install
 ```
 Iniciar a API:
 ```sh
-	yarn start
+yarn start
 ```
 
 # Como utilizar

@@ -10,29 +10,29 @@ Many tools can be utilized to make the requests: Postman, Insomnia or VS Code ex
 
 After the download of the compacted project or via git clone:
 ```sh
-	git clone https://github.com/Fizer65/test-FullstackJSJunior.git
+git clone https://github.com/Fizer65/test-FullstackJSJunior.git
 ```
 ### NodeJS
 
 To download the project dependencies type in your console inside the project folder:
 ```sh
-	npm install
+npm install
 ```
 
 To start the api type in your console:
 ```sh
-	node run start
+node run start
 ```
 ### Yarn
 
 To download the project dependencies type in your console inside the project folder:
 ```sh
-	yarn install
+yarn install
 ```
 
 To start the api type in your console:
 ```sh
-	yarn start
+yarn start
 ```
 
 # How to use
