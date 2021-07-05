@@ -1,6 +1,8 @@
 
 # API RESTFUL USANDO NODEJS, Express & TS
 
+Leia em outras linguas: [Português](README.md), [English](README.en-US.md)
+
 ## Objetivo
 - Criar 4 endpoints GET/POST/PUT/DELETE
 
@@ -8,25 +10,25 @@ Várias ferramentas podem ser utilizadas para fazer as requisições como Postma
 
 Após baixar o projeto como zip ou via git clone:
 ```sh
-git clone https://github.com/Fizer65/test-FullstackJSJunior.git
+	git clone https://github.com/Fizer65/test-FullstackJSJunior.git
 ```
 ### NodeJS
-Para baixar as dependencias do projeto:
+Para baixar as dependências do projeto:
 ```sh
-npm install
+	npm install
 ```
 Iniciar a API:
 ```sh
-node run start
+	node run start
 ```
 ### Yarn
-Para baixar as dependencias do projeto:
+Para baixar as dependências do projeto:
 ```sh
-yarn install
+	yarn install
 ```
 Iniciar a API:
 ```sh
-yarn start
+	yarn start
 ```
 
 # Como utilizar
@@ -42,14 +44,18 @@ Exemplo de rota: `http://localhost:3333/api/v1/users`
 | DELETE |	/api/v1/users	         |	                    	                 |  Deletar todos usuários  |
 | DELETE |  /api/v1/users/user_id  |		                 	                   |  Deletar único usuário   |
 
-### - Listar todos usuarios
-- Requisição com protocolo `GET` em `/api/v1/users` para o servidor, retornará todos os usuários do banco retornados com: ID, email, senha.
+### - Listar todos usuários
+- Requisição com protocolo `GET` em `/api/v1/users`.
+- Retorna todos os usuários do banco de dados retornados com: ID, email, senha.
 
 ### - Listar único usuário
-- Requisição com protocolo `GET` em `/api/v1/users/user_id` para o servidor, onde `user_id` é o ID do usuário que será retornado com: ID, email, senha.
+- Requisição com protocolo `GET` em `/api/v1/users/user_id`.
+- O `user_id` é o ID do usuário requisitado
+- Retorna: ID, email, senha.
 
 ### - Criar único usuário
-- Requisição com protocolo `POST` em `/api/v1/users/` para o servidor. Também precisa de um body do tipo JSON com o email e a senha do usuário:
+- Requisição com protocolo `POST` em `/api/v1/users/`.
+- Também precisa de um body do tipo JSON com: email e senha:
 ```json
 {
 	"email": "exemplo@gmail.com",
@@ -57,9 +63,13 @@ Exemplo de rota: `http://localhost:3333/api/v1/users`
 }
 ```
 - O ID será gerado de forma automática com o pacote UUID e as senhas serão criptografadas com o algoritmo Argon2
+- Returna status `200 OK` se a requisição foi bem sucedida.
 
 ### - Alterar único usuário
-- Requisição com protocolo `PUT` em `/api/v1/users/user_id` para o servidor, onde `user_id` é o ID do usuário que terá os dados alterados e um body do tipo JSON com o email, senha antiga para validação e a nova senha:
+- Requisição com protocolo `PUT` em `/api/v1/users/user_id`. 
+- O `user_id` é o ID do usuário que terá os dados alterados.
+- um body do tipo JSON com o email, senha antiga para validação e a nova senha:
+
 ```json
 {
 	"email": "novo.exemplo@gmail.com",
@@ -67,10 +77,16 @@ Exemplo de rota: `http://localhost:3333/api/v1/users`
 	"newPassword": "novaSenha"
 }
 ```
+- Returna status `200 OK` se a requisição foi bem sucedida.
 
-### - Deletar todos usuarios
-- Requisição com protocolo `DELETE` em `/api/v1/users/` para o servidor. 
+### - Deletar todos usuários
+- Requisição com protocolo `DELETE` em `/api/v1/users/`. 
 - ##### `⚠️ Atenção`: Fazer isso irá deletar TODOS os usuários. Pense com cuidado antes de utilizar essa rota.
 
+- Returna status `200 OK` se a requisição foi bem sucedida.
+
 ### - Deletar único usuário
-- Requisição com protocolo `DELETE` em `/api/v1/users/user_id` para o servidor, onde `user_id` é o ID do usuário que será deletado.
+- Requisição com protocolo `DELETE` em `/api/v1/users/user_id`.
+- O `user_id` é o ID do usuário que será deletado.
+
+- Returna status `200 OK` se a requisição foi bem sucedida.
