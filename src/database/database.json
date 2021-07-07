@@ -24,6 +24,11 @@
       "id": "f7367e43-7d68-4b2a-a6ab-d2f4fa5a7982",
       "email": "password.hash@gmail.com",
       "password": "$argon2i$v=19$m=4096,t=3,p=1$JVWKy56/F/VkK2yqRgKooQ$8GmePRG8G/Po5NUJIXceiQv9Pw2Xy9pcl5fde+wGW6Y"
+    },
+    {
+      "id": "4f508054-4947-4f9c-875a-ee69b3d9bad3",
+      "email": "",
+      "password": "$argon2i$v=19$m=4096,t=3,p=1$IafU2JG882ETLEDWPeR4EQ$pVvfL3wAGzFhnSKKYUgWbEcHNO8Ob5iumA2Cuai4Gsw"
     }
   ]
 }

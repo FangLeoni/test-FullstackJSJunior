@@ -25,13 +25,13 @@ async function getAllUsers(req: Request,res: Response){
 		const usersJSON:TDatabase = JSON.parse(readReturn);
 
 		if(usersJSON.users.length !== 0) {
-			res.json(usersJSON)
+			return res.json(usersJSON)
 		} else {
-			res.status(404).send("Não temos mais usuários");
+			return res.status(500).send("Não temos mais usuários");
 		}
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao ler arquivo durante seleção de todos os usuários")
+		return res.status(500).send("Erro ao ler arquivo durante seleção de todos os usuários")
 	}
     
 };
@@ -49,16 +49,16 @@ async function getUser(req: Request,res: Response){
 		if(usersJSON.users.length !== 0) {
 			usersJSON.users.forEach((user:TUser) => {
 				if(reqId === user.id){
-					res.json(user)
+					return res.json(user)
 				}
 			})
 		} else {
-			res.status(404).send("Não temos mais usuários");
+			return res.status(500).send("Não temos mais usuários");
 		}
 
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao ler arquivo durante seleção de usuário")
+		return res.status(500).send("Erro ao ler arquivo durante seleção de usuário")
 	}
     
 };
@@ -70,6 +70,10 @@ async function createUser (req: Request,res: Response){
 	const newEmail:string = req.body.email;
 	const newPassword:string = req.body.password;
 
+	if( newEmail === "" || newPassword === "" ) {
+		return res.status(500).send("Campo vazio!")
+	}
+
 	let usersStringified:string;
 
 	let hashPassword:string;
@@ -78,7 +82,7 @@ async function createUser (req: Request,res: Response){
 		hashPassword = await argon2.hash(newPassword);
 	} catch (err) {
 		console.error(err);
-		res.status(404).send("Erro ao criptografar a senha do usuário")
+		return res.status(500).send("Erro ao criptografar a senha do usuário")
 	}
 
 	try {
@@ -95,28 +99,34 @@ async function createUser (req: Request,res: Response){
 
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao ler arquivo durante criação de usuário")
+		return res.status(500).send("Erro ao ler arquivo durante criação de usuário")
 	}
 
 	try {
 		await fs.writeFile(databasePath, usersStringified,'utf8')
 
-		res.send("Usuário criado com sucesso!")
+		return res.send("Usuário criado com sucesso!")
 		
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao criar usuário!")
+		return res.status(500).send("Erro ao criar usuário!")
 	}
 };
 
 
 // Alterar único usuário // Body: JSON (email, newPassword, oldPassword) // Params: ID
 async function updateUser(req: Request,res: Response){
-
+	
 	const reqId:string = req.params.user_id;
 	const reqNewEmail:string = req.body.email;
 	const reqOldPassword:string = req.body.oldPassword;
 	const reqNewPassword:string = req.body.newPassword;
+
+
+	if( reqNewEmail === "" || reqOldPassword === "" || reqNewPassword === "" ) {
+		return res.status(500).send("Campo vazio!")
+	}
+	
 
 	let usersJSON:TDatabase;
 
@@ -126,7 +136,7 @@ async function updateUser(req: Request,res: Response){
 		hashNewPassword = await argon2.hash(reqNewPassword);
 	} catch (err) {
 		console.error(err);
-		res.status(404).send("Erro ao criptografar a senha do usuário")
+		return res.status(500).send("Erro ao criptografar a senha do usuário")
 	}
 
 	try {
@@ -136,7 +146,7 @@ async function updateUser(req: Request,res: Response){
 
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao ler arquivo durante atualização de usuário!")
+		return res.status(500).send("Erro ao ler arquivo durante atualização de usuário!")
 	}
 
 	if(usersJSON.users.length !== 0) {
@@ -156,22 +166,22 @@ async function updateUser(req: Request,res: Response){
 					try {
 						await fs.writeFile(databasePath, usersStringified,'utf8')
 		
-						res.send("Usuário atualizado com sucesso!")
+						return res.send("Usuário atualizado com sucesso!")
 						
 					} catch(err) {
 						console.error(err);
-						res.status(404).send("Erro ao atualizar usuário!")
+						return res.status(500).send("Erro ao atualizar usuário!")
 					}
 				} else {
-					res.status(404).send("Senha errada!")
+					return res.status(500).send("Senha errada!")
 				}
 	
 			} else if( index === usersJSON.users.length -1) {
-				res.status(404).send("Usuário não encontrado");
+				return res.status(500).send("Usuário não encontrado");
 			}
 		})
 	} else {
-		res.status(404).send("Não temos mais usuários");
+		return res.status(500).send("Não temos mais usuários");
 	}
 
 };
@@ -189,11 +199,11 @@ async function deleteAllUsers(req: Request,res: Response){
 	try {
 		await fs.writeFile(databasePath, emptyDatabaseString,'utf8')
 
-		res.send("Todos os usuários foram deletados com sucesso!")
+		return res.send("Todos os usuários foram deletados com sucesso!")
 		
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao deletar todos os usuários!")
+		return res.status(500).send("Erro ao deletar todos os usuários!")
 	}
     
 };
@@ -212,7 +222,7 @@ async function deleteUser (req: Request,res: Response){
 
 	} catch(err) {
 		console.error(err);
-		res.status(404).send("Erro ao ler base de dados para deletar usuário!")
+		return res.status(500).send("Erro ao ler base de dados para deletar usuário!")
 	}
 
 	if(usersJSON.users.length !== 0) {
@@ -227,20 +237,20 @@ async function deleteUser (req: Request,res: Response){
 				try {
 					await fs.writeFile(databasePath, usersStringified,'utf8')
 			
-					res.send("Usuário Deletado com sucesso!")
+					return res.send("Usuário Deletado com sucesso!")
 					
 				} catch(err) {
 					console.error(err);
-					res.status(404).send("Erro ao deletar usuário!")
+					return res.status(500).send("Erro ao deletar usuário!")
 				}
 
 			} else if( index === usersJSON.users.length -1) {
-				res.status(404).send("Usuário não encontrado!");
+				return res.status(500).send("Usuário não encontrado!");
 			}
 		})
 
 	} else {
-		res.status(404).send("Não temos mais usuários");
+		return res.status(500).send("Não temos mais usuários");
 	}
 
 };
