@@ -46,10 +46,11 @@ async function getUser(req: Request,res: Response){
 		const usersJSON:TDatabase = JSON.parse(readReturn);
 		
 		if(usersJSON.users.length !== 0) {
-			usersJSON.users.forEach((user:TUser, index:number) => {
+			usersJSON.users.some((user:TUser, index:number) => {
 				if(reqId === user.id){
 					return res.json(user)
 				} else if( index === usersJSON.users.length -1) {
+					console.log("Ele entrou no else if")
 					return res.status(500).send("Usuário não encontrado");
 				}
 			})
@@ -132,7 +133,7 @@ async function updateUser(req: Request,res: Response){
 	}
 
 	if(usersJSON.users.length !== 0) {
-		usersJSON.users.forEach( async (user:TUser, index:number) => {
+		usersJSON.users.some( async (user:TUser, index:number) => {
 			if( reqId === user.id ){
 	
 				usersJSON.users.splice(index,1)
@@ -204,7 +205,7 @@ async function deleteUser (req: Request,res: Response){
 
 	if(usersJSON.users.length !== 0) {
 
-		usersJSON.users.forEach( async (user:TUser, index:number) => {
+		usersJSON.users.some( async (user:TUser, index:number) => {
 			if( reqId === user.id ){
 	
 				usersJSON.users.splice(index,1)

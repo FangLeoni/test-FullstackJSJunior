@@ -24,6 +24,11 @@
       "id": "c7494539-f73e-4996-bc07-656ee899305e",
       "email": "altered.email@gmail.com",
       "password": "12345"
+    },
+    {
+      "id": "721e0020-3cd2-467c-a2da-130202d769f0",
+      "email": "examplo@gmail.com",
+      "password": "123"
     }
   ]
 }
