@@ -1,34 +1,29 @@
 {
   "users": [
     {
-      "id": "3efbc0d8-69fd-4aaf-bdae-16fcfc6d416a",
-      "email": "password.hash@gmail.com",
-      "password": "$argon2i$v=19$m=4096,t=3,p=1$3Ge9kqQ0NRWqPnT04H+Cow$2YDJ9yLiPTsRrQ6+biljao/FnA/O7nQ0lZ8yKJLNKDY"
+      "id": "c50678bd-3835-4950-adf6-b1518380ef0f",
+      "email": "example@gmail.com",
+      "password": "senhaDificil"
     },
     {
-      "id": "71951d61-9bc3-4e78-a304-e4573f6b4b8c",
-      "email": "password.hash@gmail.com",
-      "password": "$argon2i$v=19$m=4096,t=3,p=1$pyUZVxdedysPWNRrhACBhQ$ABQT85x1suX+O+tkfMLPB/QeVFVJQFuQmdaR9xtRCY8"
+      "id": "4d03a227-03c7-4af0-8624-135c0816cb36",
+      "email": "example@gmail.com",
+      "password": "senhaDificil"
     },
     {
-      "id": "617cf145-4273-4172-88fa-2b9a620470fd",
-      "email": "password.hash@gmail.com",
-      "password": "$argon2i$v=19$m=4096,t=3,p=1$1eds0VbLZ29eKjJtJ+OTDA$f3ODXEHFfHBM0u2Z8R5oHrzoaApuv1kyawrCKQxQdyM"
+      "id": "3fd9d7ac-284e-4822-ace8-c5324e4060e2",
+      "email": "example@gmail.com",
+      "password": "senhaDificil"
     },
     {
-      "id": "676bdc73-dea6-4dad-b69c-7ace28e4ab39",
-      "email": "password.hash@gmail.com",
-      "password": "$argon2i$v=19$m=4096,t=3,p=1$JIoaceVidtQw2AEZEI9oQQ$Zln2yRdg2GqZinZOKvmPRWountQI8PXdE2qUpjiO97w"
+      "id": "b50bb71d-9811-4f9b-afaa-98d0eda4e0eb",
+      "email": "example@gmail.com",
+      "password": "senhaDificil"
     },
     {
-      "id": "f7367e43-7d68-4b2a-a6ab-d2f4fa5a7982",
-      "email": "password.hash@gmail.com",
-      "password": "$argon2i$v=19$m=4096,t=3,p=1$JVWKy56/F/VkK2yqRgKooQ$8GmePRG8G/Po5NUJIXceiQv9Pw2Xy9pcl5fde+wGW6Y"
-    },
-    {
-      "id": "4f508054-4947-4f9c-875a-ee69b3d9bad3",
-      "email": "",
-      "password": "$argon2i$v=19$m=4096,t=3,p=1$IafU2JG882ETLEDWPeR4EQ$pVvfL3wAGzFhnSKKYUgWbEcHNO8Ob5iumA2Cuai4Gsw"
+      "id": "c7494539-f73e-4996-bc07-656ee899305e",
+      "email": "altered.email@gmail.com",
+      "password": "12345"
     }
   ]
 }

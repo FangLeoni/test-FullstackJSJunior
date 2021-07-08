@@ -12,25 +12,25 @@ After the download of the compacted project or via git clone:
 ```sh
 git clone https://github.com/Fizer65/test-FullstackJSJunior.git
 ```
-### NodeJS
 
-To download the project dependencies type in your console inside the project folder:
+### NodeJS
+To download the project dependencies:
 ```sh
 npm install
 ```
 
-To start the api type in your console:
+To start:
 ```sh
 node run start
 ```
 ### Yarn
 
-To download the project dependencies type in your console inside the project folder:
+To download the project dependencies:
 ```sh
 yarn install
 ```
 
-To start the api type in your console:
+To start:
 ```sh
 yarn start
 ```
@@ -39,27 +39,42 @@ yarn start
 #### Used port: 3333
 Route example: `http://localhost:3333/api/v1/users` 
 
-|  HTTP  |        	ROUTE          |	                 BODY    	 	              |	    DESCRIPTION    |
-|--------|-------------------------|--------------------------------------------|--------------------|
-| GET    |	/api/v1/users          |	              	                          |  List all users    | 
-| GET    |	/api/v1/users/user_id  |		    	                                  |  Get single User   |
-| POST   |	/api/v1/users          |  JSON (email,password) 	                  |	 Create User       |
-| PUT    |	/api/v1/users/user_id  |  JSON (email, new password, old password)  |	 Alter one user    |
-| DELETE |	/api/v1/users	         |	                    	                    |  Delete all users  |
-| DELETE |  /api/v1/users/user_id  |		                 	                      |  Delete One User   |
+|  HTTP  |        	ROUTE          |	         BODY           |	    DESCRIPTION    |
+|--------|-------------------------|--------------------------|--------------------|
+| GET    |	/api/v1/users          |	              	        |  List all users    | 
+| GET    |	/api/v1/users/user_id  |		    	                |  Get single User   |
+| POST   |	/api/v1/users          |  JSON (email,password)	  |	 Create User       |
+| PUT    |	/api/v1/users/user_id  |  JSON (email,password)   |	 Alter one user    |
+| DELETE |	/api/v1/users	         |	                    	  |  Delete all users  |
+| DELETE |  /api/v1/users/user_id  |		                 	    |  Delete One User   |
 
 ### - List All Users
 - Request with `GET` protocol in `/api/v1/users`. 
 - Returns all the users of the database with: ID, email and password.
+```json
+{
+	"id": "c7494539-f73e-4996-bc07-656ee899305e",
+	"email": "example@gmail.com",
+	"password": "hardPassword"
+}
+```
 
 ### - Get single User
 - Request with `GET` protocol in `/api/v1/users/user_id`.
 - The `user_id` is the target user ID
-- Returns: ID, email, password.
+- Returns: ID, email and password.
+
+```json
+{
+	"id": "c7494539-f73e-4996-bc07-656ee899305e",
+	"email": "example@gmail.com",
+	"password": "hardPassword"
+}
+```
 
 ### - Create User
 - Request with `POST` protocol in `/api/v1/users/`. 
-- Also needs a JSON body with: email, password
+- Also needs a JSON body with email and password:
 ```json
 {
 	"email": "example@gmail.com",
@@ -67,17 +82,16 @@ Route example: `http://localhost:3333/api/v1/users`
 }
 ```
 
-- The ID will be automatic generated with the UUID package and the passwords will be protected with Argon2 cryptography   
+- The ID will be automatic generated with the UUID package.  
 - Returns a `200 OK` status if the request was successful
 
 ### - Alter One User
 - Request with `PUT` protocol in `/api/v1/users/user_id`. 
 - The `user_id` is the target user ID that will be altered
-- Also needs a JSON body with: email, the old password for authentication and the new password:
+- Also needs a JSON body with the new email and the new password:
 ```json
 {
 	"email": "new.example@gmail.com",
-	"oldPassword": "oldPassword",
 	"newPassword": "newPassword"
 }
 ```

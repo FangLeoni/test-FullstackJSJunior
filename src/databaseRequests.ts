@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import path from 'path';
 import { promises as fs }  from 'fs';
 import { v4 as uuid } from 'uuid';
-import argon2 from 'argon2';
 
 type TUser = {
 	id:string; 
@@ -14,7 +13,7 @@ type TDatabase = {
 	users:Array<TUser>
 }
 
-const databasePath:string = path.join(__dirname,'database','database.json' );
+const databasePath:string = path.join(__dirname,'database','database.json');
 
 // Listar todos usuários
 async function getAllUsers(req: Request,res: Response){
@@ -47,9 +46,11 @@ async function getUser(req: Request,res: Response){
 		const usersJSON:TDatabase = JSON.parse(readReturn);
 		
 		if(usersJSON.users.length !== 0) {
-			usersJSON.users.forEach((user:TUser) => {
+			usersJSON.users.forEach((user:TUser, index:number) => {
 				if(reqId === user.id){
 					return res.json(user)
+				} else if( index === usersJSON.users.length -1) {
+					return res.status(500).send("Usuário não encontrado");
 				}
 			})
 		} else {
@@ -76,15 +77,6 @@ async function createUser (req: Request,res: Response){
 
 	let usersStringified:string;
 
-	let hashPassword:string;
-	
-	try {
-		hashPassword = await argon2.hash(newPassword);
-	} catch (err) {
-		console.error(err);
-		return res.status(500).send("Erro ao criptografar a senha do usuário")
-	}
-
 	try {
 		const readReturn:string = await fs.readFile(databasePath,'utf8');
 		
@@ -92,7 +84,7 @@ async function createUser (req: Request,res: Response){
 		usersJSON.users.push({
 			"id": newId,
 			"email": newEmail,
-			"password": hashPassword
+			"password": newPassword
 		})
 		
 		usersStringified = JSON.stringify(usersJSON,null, 2);
@@ -119,25 +111,15 @@ async function updateUser(req: Request,res: Response){
 	
 	const reqId:string = req.params.user_id;
 	const reqNewEmail:string = req.body.email;
-	const reqOldPassword:string = req.body.oldPassword;
 	const reqNewPassword:string = req.body.newPassword;
 
 
-	if( reqNewEmail === "" || reqOldPassword === "" || reqNewPassword === "" ) {
+	if( reqNewEmail === "" || reqNewPassword === "" ) {
 		return res.status(500).send("Campo vazio!")
 	}
 	
 
 	let usersJSON:TDatabase;
-
-	let hashNewPassword:string;
-	
-	try {
-		hashNewPassword = await argon2.hash(reqNewPassword);
-	} catch (err) {
-		console.error(err);
-		return res.status(500).send("Erro ao criptografar a senha do usuário")
-	}
 
 	try {
 		const readReturn:string = await fs.readFile(databasePath,'utf8');
@@ -157,25 +139,20 @@ async function updateUser(req: Request,res: Response){
 				usersJSON.users.push({
 					"id": reqId,
 					"email": reqNewEmail,
-					"password": hashNewPassword
+					"password": reqNewPassword
 				})
 	
-				if(await argon2.verify(user.password, reqOldPassword)) {
-					let usersStringified = JSON.stringify(usersJSON,null, 2);
+				let usersStringified = JSON.stringify(usersJSON,null, 2);
 					
-					try {
-						await fs.writeFile(databasePath, usersStringified,'utf8')
-		
-						return res.send("Usuário atualizado com sucesso!")
-						
-					} catch(err) {
-						console.error(err);
-						return res.status(500).send("Erro ao atualizar usuário!")
-					}
-				} else {
-					return res.status(500).send("Senha errada!")
-				}
+				try {
+					await fs.writeFile(databasePath, usersStringified,'utf8')
 	
+					return res.send("Usuário atualizado com sucesso!")
+					
+				} catch(err) {
+					console.error(err);
+					return res.status(500).send("Erro ao atualizar usuário!")
+				}
 			} else if( index === usersJSON.users.length -1) {
 				return res.status(500).send("Usuário não encontrado");
 			}
