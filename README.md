@@ -62,6 +62,7 @@ Exemplo de rota: `http://localhost:3333/api/v1/users`
 - Requisição com protocolo `GET` em `/api/v1/users/user_id`.
 - O `user_id` é o ID do usuário requisitado
 - Retorna: ID, email e senha.
+
 ```json
 {
 	"id": "c7494539-f73e-4996-bc07-656ee899305e",
@@ -79,6 +80,7 @@ Exemplo de rota: `http://localhost:3333/api/v1/users`
 	"password": "senha"
 }
 ```
+##### `⚠️ Atenção`: Usuários com emails repetidos serão bloqueados.
 - O ID será gerado de forma automática com o pacote UUID.
 - Returna status `200 OK` se a requisição foi bem sucedida.
 

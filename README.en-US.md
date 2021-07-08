@@ -75,13 +75,14 @@ Route example: `http://localhost:3333/api/v1/users`
 ### - Create User
 - Request with `POST` protocol in `/api/v1/users/`. 
 - Also needs a JSON body with email and password:
+
 ```json
 {
 	"email": "example@gmail.com",
 	"password": "password"
 }
 ```
-
+##### `⚠️ Warning`: Users with repeated emails will be blocked.
 - The ID will be automatic generated with the UUID package.  
 - Returns a `200 OK` status if the request was successful
 
