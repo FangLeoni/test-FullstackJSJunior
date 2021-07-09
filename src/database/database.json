@@ -1,3 +1,9 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "54009924-2209-41a2-a083-8314feea841e",
+      "email": "lucas.fontes04@gmail.com",
+      "password": "123"
+    }
+  ]
 }

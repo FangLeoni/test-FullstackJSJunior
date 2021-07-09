@@ -3,10 +3,12 @@
 
 Read in another language: [Português](README.md), [English](README.en-US.md)
 
+## [Site Complementar feito em React](https://github.com/Fizer65/Complemento-FullstackJSJunior)
+
 ## Objetivo
 - Criar 4 endpoints GET/POST/PUT/DELETE
 
-Várias ferramentas podem ser utilizadas para fazer as requisições como Postman, Insomnia ou extensões do VS Code como REST Client.
+Várias ferramentas podem ser utilizadas para fazer as requisições como [Postman](https://www.postman.com/downloads/), [Insomnia](https://insomnia.rest/download) ou extensões do VS Code como [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 Após baixar o projeto como zip ou via git clone:
 ```sh
